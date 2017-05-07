@@ -1,5 +1,5 @@
 
-public abstract class Mashine implements Run {
+public abstract class Mashine implements Run, Comparable<Mashine> {
 	
 	 final int MAXSPEED = 180;
 	 final int MINSPEED = 30;
@@ -13,8 +13,32 @@ public abstract class Mashine implements Run {
 		speedInMoment = speed;
 	}
 	
-	public void PrintTransportName(){
+	public void printTransportName(){
 		System.out.println("Transport name: " + transportName);
 	}
+	
+
+	
+
+	@Override
+	public String getTransportName() {
+		return transportName;
+	}
+
+	@Override
+	public int getSpeed() {
+		return speedInMoment;
+	}
+
+	@Override
+	public int compareTo(Mashine compareMashine) {
+
+		int compareSpeed = ((Mashine) compareMashine).getSpeed();
+		
+		return this.speedInMoment - compareSpeed;
+	}
+
+	
+	
 	
 }

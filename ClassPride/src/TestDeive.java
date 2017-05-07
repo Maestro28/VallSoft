@@ -1,7 +1,16 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestDeive {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		System.out.println("And now we start test aour cars !!!");
 		
@@ -50,6 +59,95 @@ public class TestDeive {
 		 soldierTransporter.checkFunction();
 		 
 		 System.out.println("-----------------------------------------------------");
+		 
+		 
+		 List<Mashine>listMashine = new ArrayList<>();
+		 
+		 List<String> carsParameters = new ArrayList<String>();
+		 
+		 
+		 try 
+		    { 
+		        FileInputStream fstream_cars = new FileInputStream("cars.txt"); 
+		        DataInputStream data_input = new DataInputStream(fstream_cars); 
+		        BufferedReader buffer = new BufferedReader(new InputStreamReader(data_input)); 
+		        String str_line; 
+
+		        while ((str_line = buffer.readLine()) != null) 
+		        { 
+		            str_line = str_line.trim(); 
+		            if ((str_line.length()!=0))  
+		            { 
+		            	carsParameters.add(str_line);
+		            } 
+		        }
+
+		    } catch(IOException e){
+		    	System.out.println("Error");
+		    	e.printStackTrace();
+		    }      
+		    
+		 
+		 for (String str : carsParameters){
+			 System.out.print("From text file - ");System.out.println(str);
+			 
+			 String[] parameter = str.split("\\s+");
+			 
+			 if(parameter[0].equals("Car:")){
+				 listMashine.add(new Car(parameter[1], Integer.parseInt(parameter[2]), Integer.parseInt(parameter[3]), Integer.parseInt(parameter[4]), Integer.parseInt(parameter[5])));
+			 }else if (parameter[0].equals("ArmyCar:")){
+				 listMashine.add(new ArmyCar(parameter[1], Integer.parseInt(parameter[2]), Integer.parseInt(parameter[3]), Integer.parseInt(parameter[4]), Integer.parseInt(parameter[5])));
+			 }
+			 
+			 
+			 /*for(int i=0 ; i<parameter.length; i++){
+					 System.out.println(parameter[i]);
+				 }*/
+			
+		 }		 
+		 
+		 
+		 listMashine.add(impala);
+		 listMashine.add(ford);
+		 listMashine.add(soldierTransporter);
+		 listMashine.add(KV1C);
+		 
+		 System.out.println("\nSort mashines by speed: ");
+		 listMashine.sort(null);
+		 
+		 // check sorted array of Mashines
+		 for (Mashine mash : listMashine){
+			 mash.printTransportName();
+		 }
+		 
+		 
+		 FileWriter myFile = null;
+			BufferedWriter buff = null;
+		 
+		 try{
+			 myFile = new FileWriter("sortedCars.txt"); 
+			 buff = new BufferedWriter(myFile);; 
+			     
+			 for(Mashine mash : listMashine){
+				 buff.write(mash.getTransportName()+", "+mash.getSpeed()+", "+ mash.getMass()+", "+ mash.getPassengerNumber()+", "+mash.getWheelsNumber()+";");
+				 buff.newLine();
+			 }
+		 }catch(IOException e1){
+			 e1.printStackTrace();
+		 }finally {
+			 
+			 try {
+				
+				 buff.flush();
+				 buff.close();
+				 myFile.close();
+				 
+			 }catch(IOException e1){
+				 e1.printStackTrace();
+			 }
+			 
+		 }
+		 
 		 		
 	}
 

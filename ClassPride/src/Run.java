@@ -5,4 +5,5 @@ public interface Run {
 	int getMass();
 	int getPassengerNumber();
 	int getWheelsNumber();
+	String getTransportName();
 }

@@ -6,7 +6,6 @@ public class Cabriolet extends Car {
 	
 	Cabriolet(String name, int speed, int mass, int numberOfPassangers, int countOfWhils) {
 		super(name, speed, mass, numberOfPassangers, countOfWhils);
-		// TODO Auto-generated constructor stub
 	}	
 
 	public String getSeason() {
