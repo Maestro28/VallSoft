@@ -4,4 +4,5 @@ armyTransporter, 60, 8000, 15, 6;
 Ford, 90, 4000, 4, 4;
 Impala, 120, 1500, 2, 4;
 Mercedes, 230, 2000, 5, 4;
+lambargini, 300, 1000, 2, 4;
 Porshe, 320, 1200, 2, 4;

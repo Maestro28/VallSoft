@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 //import org.json.simple.parser.JSONParser;
 
 public class TestDrive {
@@ -127,7 +128,42 @@ public class TestDrive {
 		 listMashine.add(soldierTransporter);
 		 listMashine.add(KV1C);
 		 
+		 //reading from keyBoard;
 		 
+		 Scanner key = null;
+		 try{
+			 System.out.println("add new mashine: ");
+			 key = new Scanner(System.in);
+			 System.out.println("Entter type of mashine:");
+			 String type = key.nextLine();
+			 
+			 System.out.println("Enter transport name: ");
+			 String name = key.nextLine();
+			 System.out.println("Enter transport speed: ");
+			 int speed = key.nextInt();
+			 System.out.println("Enter transport weight: ");
+			 int weight = key.nextInt();
+			 System.out.println("Enter namber of passengers: ");
+			 int pass = key.nextInt();
+			 System.out.println("Enter number of wheels: ");
+			 int wh = key.nextInt();
+			 
+			 if(type.equals("Cabriolet")){
+				 listMashine.add(new Cabriolet(name, speed, weight, pass, wh));
+			 }else if(type.equals("BTR")){
+				 listMashine.add(new BTR(name, speed, weight, pass, wh));
+			 }else if(type.equals("Pickup")){
+				 listMashine.add(new Pickup(name, speed, weight, pass, wh));
+			 }else if(type.equals("Tank")){
+				 listMashine.add(new Tank(name, speed, weight, pass, wh));
+			 }else System.out.println("Not correct type of Mashine !");
+		 }catch(Exception e){
+			 e.printStackTrace();
+		 }finally {
+			 key.close();
+		 }
+		
+		
 		 //JSONParser parser;
 		 
 		 
