@@ -7,10 +7,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+//import org.json.simple.parser.JSONParser;
 
-public class TestDeive {
+public class TestDrive {
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 
 		System.out.println("And now we start test aour cars !!!");
 		
@@ -66,11 +67,15 @@ public class TestDeive {
 		 List<String> carsParameters = new ArrayList<String>();
 		 
 		 
+		 FileInputStream fstream_cars = null;
+		 DataInputStream data_input = null;
+		 BufferedReader buffer = null;
+		 
 		 try 
 		    { 
-		        FileInputStream fstream_cars = new FileInputStream("cars.txt"); 
-		        DataInputStream data_input = new DataInputStream(fstream_cars); 
-		        BufferedReader buffer = new BufferedReader(new InputStreamReader(data_input)); 
+		         fstream_cars = new FileInputStream("cars.txt"); 
+		         data_input = new DataInputStream(fstream_cars); 
+		         buffer = new BufferedReader(new InputStreamReader(data_input)); 
 		        String str_line; 
 
 		        while ((str_line = buffer.readLine()) != null) 
@@ -85,7 +90,17 @@ public class TestDeive {
 		    } catch(IOException e){
 		    	System.out.println("Error");
 		    	e.printStackTrace();
-		    }      
+		    } finally {
+		    	try{
+		    		
+		    		buffer.close();
+		    		
+		    	}catch(IOException e){
+		    		e.printStackTrace();
+		    	}
+		    }
+		    	
+		    
 		    
 		 
 		 for (String str : carsParameters){
@@ -111,6 +126,12 @@ public class TestDeive {
 		 listMashine.add(ford);
 		 listMashine.add(soldierTransporter);
 		 listMashine.add(KV1C);
+		 
+		 
+		 //JSONParser parser;
+		 
+		 
+		 
 		 
 		 System.out.println("\nSort mashines by speed: ");
 		 listMashine.sort(null);
@@ -148,7 +169,6 @@ public class TestDeive {
 			 
 		 }
 		 
-		 		
 	}
 
 }
