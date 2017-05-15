@@ -25,6 +25,7 @@ public class DBConnection {
 	 private final static String USER = "root";
 	 private final static String PASSWORD = "";
 	 
+	 
 	 private Scanner in;
 	 
 	 
@@ -105,7 +106,7 @@ public class DBConnection {
 					preparedStatement.executeUpdate(); 			
 				}else if (n==3){
 					
-					System.out.println("Enter id for update row:"); 
+					System.out.println("Enter id"+" for update row:"); 
 					int Id = Integer.parseInt(bufIn.readLine());
 
 					int id ; 
